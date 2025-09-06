@@ -11,14 +11,11 @@ from .downloader import DownloadConfig, download_to_csv
 def build_parser() -> argparse.ArgumentParser:
     """Build the argument parser for the CLI.
 
-    This minimal version only parses common downloader options
-    and prints them back. Real downloading will be implemented later.
+    Downloader for WA DPIRD weather station data.
     """
     parser = argparse.ArgumentParser(
         prog="wa_dpird_weather_downloader",
-        description=(
-            "Download WA DPIRD weather station data (minimal CLI scaffold)."
-        ),
+        description=("Download WA DPIRD weather station data."),
     )
 
     parser.add_argument(
@@ -32,14 +29,14 @@ def build_parser() -> argparse.ArgumentParser:
         type=str,
         required=False,
         default=None,
-        help="Start date (YYYY-MM-DD). Optional for minimal version.",
+        help="Start date-time (YYYY-MM-DDTHH:MM:SS, UTC)",
     )
     parser.add_argument(
         "--end",
         type=str,
         required=False,
         default=None,
-        help="End date (YYYY-MM-DD). Optional for minimal version.",
+        help="End date-time (YYYY-MM-DDTHH:MM:SS, UTC)",
     )
     parser.add_argument(
         "--out",
@@ -51,12 +48,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--api-key",
         type=str,
-        required=False,
-        default=None,
-        help=(
-            "DPIRD API key. If not provided, reads from env var "
-            "DPIRD_API_KEY or .env if available."
-        ),
+        required=True,
+        help="DPIRD API key (required).",
     )
     parser.add_argument(
         "--limit",
@@ -82,24 +75,8 @@ def main(argv: Optional[list[str]] = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
 
-    # Resolve API key from args, env or dotenv
+    # API key is required via CLI flag
     api_key = args.api_key
-    if api_key is None:
-        # try dotenv if available
-        try:
-            from dotenv import load_dotenv  # type: ignore
-
-            load_dotenv()
-        except Exception:
-            pass
-        import os
-
-        api_key = os.getenv("DPIRD_API_KEY")
-
-    if not api_key:
-        parser.error(
-            "API key is required. Provide --api-key or set DPIRD_API_KEY in environment/.env."
-        )
 
     cfg = DownloadConfig(
         station_id=args.station,

@@ -3,7 +3,7 @@ Develop the utility tools for animal experiments data analysis for the researche
 
 ## WA DPIRD Weather Downloader
 - Command: `wa_dpird_weather_downloader --help`
-- Example: `wa_dpird_weather_downloader --station WN --start 2024-03-19T00:00:00 --end 2025-08-01T00:00:00 --out datasets/WN_2024-03-19_to_2025-08-01.csv`
+- Example: `wa_dpird_weather_downloader --station WN --start 2024-03-19T00:00:00 --end 2025-08-01T00:00:00 --out datasets/WN_2024-03-19_to_2025-08-01.csv --api-key YOUR_API_KEY`
 
 The CLI downloads real data from the WA DPIRD API with retries and resumable CSV output.
 
@@ -12,17 +12,14 @@ The CLI downloads real data from the WA DPIRD API with retries and resumable CSV
 - Run CLI after install: `wa_dpird_weather_downloader --help`
 
 ### Usage
-- Set API key via env or `.env`:
-  - `.env` example: `DPIRD_API_KEY=YOUR_API_KEY`
-  - Or export: `export DPIRD_API_KEY=YOUR_API_KEY`
-- Run:
-  - `wa_dpird_weather_downloader --station WN --start 2024-03-19T00:00:00 --end 2025-08-01T00:00:00 --out datasets/WN_2024-03-19_to_2025-08-01.csv`
+- Run (API key required via flag):
+  - `wa_dpird_weather_downloader --station WN --start 2024-03-19T00:00:00 --end 2025-08-01T00:00:00 --out datasets/WN_2024-03-19_to_2025-08-01.csv --api-key YOUR_API_KEY`
 
 ### Flags
 - `--station`: station ID/code (e.g., `WN`, `009225`)
-- `--start`, `--end`: date-time `YYYY-MM-DDTHH:MM:SS`
+- `--start`, `--end`: date-time `YYYY-MM-DDTHH:MM:SS` (UTC)
 - `--out`: output CSV path
-- `--api-key`: override env; otherwise reads `DPIRD_API_KEY` (loads `.env` if present)
+- `--api-key` (required): DPIRD API key
 - `--limit`: page size (default 200)
 
 ### Features
