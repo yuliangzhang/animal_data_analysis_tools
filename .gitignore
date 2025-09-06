@@ -1,0 +1,27 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environments
+.venv/
+venv/
+.env
+.env.*
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data and outputs
+work_dir*/
+
+# Artifacts (large/binary)
+*.pt
+*.pkl
+*.mp4
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/

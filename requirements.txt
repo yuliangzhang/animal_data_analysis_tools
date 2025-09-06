@@ -1,0 +1,8 @@
+# Core testing and tooling
+pytest
+pytest-cov
+black
+ruff
+isort
+python-dotenv
+
