@@ -15,6 +15,9 @@ venv/
 
 # Data and outputs
 work_dir*/
+dist/
+build/
+*.egg-info/
 
 # Artifacts (large/binary)
 *.pt

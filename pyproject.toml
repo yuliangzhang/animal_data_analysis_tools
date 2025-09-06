@@ -17,3 +17,34 @@ filterwarnings = [
   "ignore::DeprecationWarning",
 ]
 
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "wa-weather-station-tool"
+version = "0.1.0"
+description = "WA DPIRD weather station downloader (minimal CLI)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Proprietary" }
+authors = [
+  { name = "Animal Data Analysis Tools" }
+]
+keywords = ["weather", "DPIRD", "WA", "downloader", "CLI"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "License :: Other/Proprietary License",
+  "Operating System :: OS Independent",
+]
+dependencies = []
+
+[project.scripts]
+wa_dpird_weather_downloader = "wa_weather_station_tool.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = [
+  "src/wa_weather_station_tool",
+  "src/animal_data_analysis_tools",
+]
