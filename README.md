@@ -59,7 +59,8 @@ When contacting support, please include:
 - The full CLI command you ran (without exposing your API key).
 - Error message/output and a brief description of the issue.
 - Your OS, Python version, and package version (`wa-weather-station-tool --version`).
-- Or, if you are not familiar with Python/Coding, I can provide the downloading service.
+
+Or, if you are not familiar with Python/Coding, I can provide the downloading service.
 
 ### Local Install (alternative to PyPI)
 - Download the repository: `git clone https://github.com/yuliangzhang/animal_data_analysis_tools.git`
