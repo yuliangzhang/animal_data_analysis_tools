@@ -53,8 +53,8 @@ Examples:
 - API key errors: Confirm the `--api-key` is correct and active.
 
 ### Local Install (alternative to PyPI)
-- Download the repository: git clone https://github.com/yuliangzhang/animal_data_analysis_tools.git
-- Change to the root directory: cd animal_data_analysis_tools
+- Download the repository: `git clone https://github.com/yuliangzhang/animal_data_analysis_tools.git`
+- Change to the root directory: `cd animal_data_analysis_tools`
 - From source root: `pip install -e .`
 - Run CLI: `wa_dpird_weather_downloader --help`
 
