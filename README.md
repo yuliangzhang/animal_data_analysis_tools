@@ -3,7 +3,7 @@ Develop the utility tools for animal experiments data analysis for the researche
 
 ## WA DPIRD Weather Downloader
 - Command: `wa_dpird_weather_downloader --help`
-- Example: `wa_dpird_weather_downloader --station WN --start 2024-03-19T00:00:00 --end 2025-08-01T00:00:00 --out datasets/WN_2024-03-19_to_2025-08-01.csv --api-key YOUR_API_KEY`
+- Example: `wa_dpird_weather_downloader --station WN --start 2024-03-19T00:00:00 --end 2024-04-19T00:00:00 --out datasets/WN_2024-03-19_to_2025-04-19.csv --api-key YOUR_API_KEY`
 
 The CLI downloads real data from the WA DPIRD API with retries and resumable CSV output.
 
@@ -17,7 +17,7 @@ The CLI downloads real data from the WA DPIRD API with retries and resumable CSV
 
 ### Flags
 - `--station`: station ID/code (e.g., `WN`, `009225`)
-- `--start`, `--end`: date-time `YYYY-MM-DDTHH:MM:SS` (UTC)
+- `--start`, `--end`: date-time `YYYY-MM-DDTHH:MM:SS` (GMT)
 - `--out`: output CSV path
 - `--api-key` (required): DPIRD API key
 - `--limit`: page size (default 200)
