@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WA DPIRD Weather Data Downloader</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background: #f7f7f7; }
+      .container { max-width: 1000px; margin: 32px auto; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.08); border-radius: 8px; overflow: hidden; }
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+      .left { background: #0e3a5d; color: #fff; display: flex; align-items: center; justify-content: center; padding: 24px; }
+      .left img { max-width: 100%; height: auto; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+      .right { padding: 28px 28px 36px; }
+      h1 { margin: 0 0 8px; font-size: 22px; color: #0e3a5d; }
+      p.sub { margin: 0 0 24px; color: #555; }
+      form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 16px; }
+      .full { grid-column: 1 / -1; }
+      label { display: block; font-size: 13px; color: #333; margin-bottom: 6px; }
+      input, textarea { width: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid #cfd8e3; border-radius: 6px; font-size: 14px; }
+      textarea { min-height: 96px; resize: vertical; }
+      .actions { display: flex; gap: 12px; margin-top: 12px; }
+      button { background: #0e7c86; color: #fff; border: none; border-radius: 6px; padding: 10px 16px; cursor: pointer; font-size: 14px; }
+      button:hover { background: #0c6b73; }
+      .note { font-size: 12px; color: #666; margin-top: 6px; }
+      .flash { background: #ffe9e9; color: #7e1d1d; padding: 8px 12px; border-radius: 6px; border: 1px solid #f5c2c2; margin-bottom: 16px; }
+      @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } .left { padding: 16px; } }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="grid">
+        <div class="left">
+          <img src="{{ url_for('static', filename='DPIRD_WA_Weather_Station.png') }}" alt="DPIRD WA Weather Station" />
+        </div>
+        <div class="right">
+          <h1>WA DPIRD Weather Data Downloader</h1>
+          <p class="sub">Fetch station data by date range. Results will be emailed with a download link.</p>
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="flash">{{ message }}</div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+
+          <form method="post" action="{{ url_for('submit') }}">
+            <div>
+              <label for="station">Station Code</label>
+              <input id="station" name="station" type="text" placeholder="e.g. 009225" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            </div>
+
+            <div>
+              <label for="start">Start Date</label>
+              <input id="start" name="start" type="date" required />
+              <div class="note">Max range: 1 year.</div>
+            </div>
+            <div>
+              <label for="end">End Date</label>
+              <input id="end" name="end" type="date" required />
+            </div>
+
+            <div class="full">
+              <label for="utilization">Data Utilization</label>
+              <textarea id="utilization" name="utilization" placeholder="Briefly describe how you will use these data..."></textarea>
+            </div>
+
+            <div class="actions full">
+              <button type="submit">Submit Request</button>
+            </div>
+          </form>
+
+          <p class="note">Dates are converted to YYYY-MM-DDTHH:MM:SS internally.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>
+

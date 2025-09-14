@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin – Requests</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background: #f7f7f7; }
+      .wrap { max-width: 1200px; margin: 24px auto; padding: 0 16px; }
+      h1 { font-size: 22px; color: #0e3a5d; margin: 0 0 16px; }
+      table { width: 100%; border-collapse: collapse; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+      th, td { font-size: 13px; text-align: left; padding: 10px 8px; border-bottom: 1px solid #e8eef3; vertical-align: top; }
+      th { background: #f1f5f9; color: #334155; position: sticky; top: 0; }
+      tr:hover { background: #fafcff; }
+      .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; color: #fff; }
+      .pending { background: #a3a3a3; }
+      .completed { background: #0e7c86; }
+      .failed { background: #d14343; }
+      .muted { color: #6b7280; }
+      .controls { margin: 8px 0 16px; color: #475569; }
+      a { color: #0e7c86; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      code { background: #f1f5f9; padding: 2px 4px; border-radius: 4px; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Requests</h1>
+      <div class="controls">Showing latest requests. Append <code>?limit=500</code> to URL to change.</div>
+      <div style="overflow:auto; max-height: 80vh;">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Email</th>
+              <th>Station</th>
+              <th>Start</th>
+              <th>End</th>
+              <th>Utilization</th>
+              <th>Status</th>
+              <th>File</th>
+              <th>Created</th>
+              <th>Updated</th>
+              <th>Error</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for r in rows %}
+              <tr>
+                <td>{{ r.id }}</td>
+                <td>{{ r.email }}</td>
+                <td>{{ r.station_code }}</td>
+                <td class="muted">{{ r.start_date }}</td>
+                <td class="muted">{{ r.end_date }}</td>
+                <td style="max-width: 280px;">{{ r.utilization }}</td>
+                <td>
+                  {% set status = (r.status or '').lower() %}
+                  <span class="badge {{ status }}">{{ r.status }}</span>
+                </td>
+                <td>
+                  {% if r.filename %}
+                    <a href="{{ url_for('download_file', filename=r.filename) }}">{{ r.filename }}</a>
+                  {% else %}
+                    <span class="muted">—</span>
+                  {% endif %}
+                </td>
+                <td class="muted">{{ r.created_at }}</td>
+                <td class="muted">{{ r.updated_at }}</td>
+                <td style="max-width: 300px; color: #7e1d1d;">{{ (r.error or '')[:200] }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+  </html>
+

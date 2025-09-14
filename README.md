@@ -72,3 +72,29 @@ Or, if you are not familiar with Python/Coding, I can provide the downloading se
 Build: python -m build
 Upload to PyPI: twine upload dist/* (user: __token__)
 -->
+ 
+## Web Downloader (No Coding Required)
+This repo includes a simple web app to request WA DPIRD weather data via a browser. It stores requests, downloads data in the background using the CLI downloader, and emails a download link when ready.
+
+Locations:
+- `src/wa_weather_station_web/`: Flask app, templates, routes
+- `work_dir_web/`: SQLite DB and downloaded CSVs (gitignored)
+- `config.yml`: App settings (see `config.yml.example`)
+
+Run locally:
+1. Create env and install deps
+   - `python -m venv .venv && source .venv/bin/activate`
+   - `pip install -r requirements.txt`
+2. Configure
+   - Copy `config.yml.example` to `config.yml` and set `dpird_api_key` and SMTP settings.
+   - Optionally export `BASE_URL` if not using `http://localhost:5000`.
+3. Start
+   - `python scripts/run_web.py`
+4. Use
+   - Open `http://localhost:5000` and submit the form.
+
+Notes:
+- Date range is limited to 1 year. The backend converts to `YYYY-MM-DDTHH:MM:SS`.
+- Files are served at `/downloads/<filename>` from `work_dir_web/downloads/`.
+- If SMTP is not configured, email is skipped and logged to console.
+
