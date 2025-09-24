@@ -6,3 +6,6 @@ ruff
 isort
 python-dotenv
 requests
+numpy
+pandas
+matplotlib

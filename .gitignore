@@ -24,6 +24,9 @@ build/
 *.pkl
 *.mp4
 
+# GPS accuracy analysis outputs
+gps_accuracy_analysis/gps_analysis_res/
+
 # OS/editor
 .DS_Store
 .idea/
