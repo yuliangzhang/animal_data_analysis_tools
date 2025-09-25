@@ -18,11 +18,51 @@ work_dir*/
 dist/
 build/
 *.egg-info/
+gps_data_analysis/gps_analysis_outputs/
 
 # Artifacts (large/binary)
 *.pt
 *.pkl
 *.mp4
+*.avi
+*.mov
+*.mkv
+*.ckpt
+*.joblib
+
+# Generated data files (ignore program outputs)
+*.txt
+!requirements.txt
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.jsonl
+*.ndjson
+*.geojson
+*.gpkg
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.tif
+*.tiff
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.npz
+*.npy
+*.h5
+*.hdf5
+
+# Logs and reports
+*.log
+*.out
+*.err
+*.pdf
 
 # GPS accuracy analysis outputs
 gps_accuracy_analysis/gps_analysis_res/
