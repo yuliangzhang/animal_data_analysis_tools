@@ -35,6 +35,7 @@ gps_data_analysis/gps_analysis_outputs/
 !requirements.txt
 *.csv
 *.tsv
+*.xlsx
 *.parquet
 *.feather
 *.jsonl
@@ -53,6 +54,8 @@ gps_data_analysis/gps_analysis_outputs/
 *.jpeg
 *.gif
 *.svg
+*.zip
+*.rar
 *.npz
 *.npy
 *.h5
@@ -63,6 +66,7 @@ gps_data_analysis/gps_analysis_outputs/
 *.out
 *.err
 *.pdf
+*.md
 
 # GPS accuracy analysis outputs
 gps_accuracy_analysis/gps_analysis_res/
